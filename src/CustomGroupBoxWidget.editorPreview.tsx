@@ -1,12 +1,20 @@
 import { Component, ReactNode, createElement } from "react";
-import { HelloWorldSample } from "./components/HelloWorldSample";
 import { CustomGroupBoxWidgetPreviewProps } from "../typings/CustomGroupBoxWidgetProps";
+import { CustomGroupBox } from "./components/CustomGroupBox";
 
 declare function require(name: string): string;
 
 export class preview extends Component<CustomGroupBoxWidgetPreviewProps> {
     render(): ReactNode {
-        return <HelloWorldSample sampleText={this.props.sampleText} />;
+        return (
+            <CustomGroupBox
+                isPreview
+                class={this.props.class}
+                headerPreviewContent={this.props.headerContent}
+                bodyPreviewContent={this.props.bodyContent}
+                collapsible={this.props.collapsible}
+            />
+        );
     }
 }
 

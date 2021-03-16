@@ -3,18 +3,24 @@
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix UI Content Team
  */
-import { CSSProperties } from "react";
+import { ComponentType, CSSProperties, ReactNode } from "react";
+
+export type CollapsibleEnum = "no" | "yesStartExpanded" | "yesStartCollapsed";
 
 export interface CustomGroupBoxWidgetContainerProps {
     name: string;
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
-    sampleText: string;
+    headerContent: ReactNode;
+    bodyContent: ReactNode;
+    collapsible: CollapsibleEnum;
 }
 
 export interface CustomGroupBoxWidgetPreviewProps {
     class: string;
     style: string;
-    sampleText: string;
+    headerContent: { widgetCount: number; renderer: ComponentType };
+    bodyContent: { widgetCount: number; renderer: ComponentType };
+    collapsible: CollapsibleEnum;
 }

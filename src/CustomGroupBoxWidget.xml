@@ -8,9 +8,22 @@
     <icon/>
     <properties>
         <propertyGroup caption="General">
-            <property key="sampleText" type="string" required="false">
-                <caption>Default value</caption>
-                <description>Sample text input</description>
+            <property key="headerContent" type="widgets">
+                <caption>Header content</caption>
+                <description></description>
+            </property>
+            <property key="bodyContent" type="widgets">
+                <caption>Body content</caption>
+                <description></description>
+            </property>
+            <property key="collapsible" type="enumeration" defaultValue="yesStartExpanded">
+                <caption>Collapsible</caption>
+                <description></description>
+                <enumerationValues>
+                    <enumerationValue key="no">No</enumerationValue>
+                    <enumerationValue key="yesStartExpanded">Yes (start expanded)</enumerationValue>
+                    <enumerationValue key="yesStartCollapsed">Yes (start collapsed)</enumerationValue>
+                </enumerationValues>
             </property>
         </propertyGroup>
     </properties>
