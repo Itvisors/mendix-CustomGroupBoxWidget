@@ -1,14 +1,18 @@
 ## CustomGroupBoxWidget
-[Custom group box widget for web]
+Custom group box widget for web
 
 ## Features
-[feature highlights]
+In addition to default groupbox, place content in the header.
 
 ## Usage
-[step by step instructions]
+No specific installation. Just put your content in the header and body sections.
 
 ## Styling
-The widget can work with the same classes Mendix provides for the default group box widget. To make this easier you can adjust the settings.json file to add design properties for the widget: (The test project in the GitHub repository has an example)
+The widget can work with the same classes Mendix provides for the default group box widget. To make this easier you can adjust the settings.json file to add design properties for the widget. The test project in the GitHub repository has an [example](https://github.com/Itvisors/mendix-CustomGroupBoxWidget/blob/main/test/theme/settings.json)
+
+Have a look at the Mendix documentation page on [design properties](https://docs.mendix.com/howto8/front-end/extend-design-properties-to-customize) for more information.
+
+The design properties for the widget:
 
 ```
         "itvisors.customgroupboxwidget.CustomGroupBoxWidget": [
@@ -61,7 +65,5 @@ The widget can work with the same classes Mendix provides for the default group 
 ```
 
 ## Issues, suggestions and feature requests
-[link to GitHub issues]
+[link to GitHub issues](https://github.com/Itvisors/mendix-CustomGroupBoxWidget/issues)
 
-## Development and contribution
-[specify contribute]

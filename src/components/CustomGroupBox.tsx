@@ -11,22 +11,50 @@ export interface CustomGroupBoxProps {
     collapsible: CollapsibleEnum;
 }
 
-export class CustomGroupBox extends Component<CustomGroupBoxProps> {
+interface State {
+    boxStatus: "initial" | "expanded" | "collapsed";
+}
+
+export class CustomGroupBox extends Component<CustomGroupBoxProps, State> {
+    constructor(props: CustomGroupBoxProps) {
+        super(props);
+
+        this.state = {
+            boxStatus: "initial"
+        };
+    }
+
     render(): ReactNode {
-        const className = "mx-groupbox " + this.getCollapsibleClassName() + this.props.class;
-        const { headerContent, headerPreviewContent, bodyContent, bodyPreviewContent } = this.props;
+        const { collapsible, headerContent, headerPreviewContent, bodyContent, bodyPreviewContent } = this.props;
+        // When the widget is first rendered, state will be at initial value.
+        // Determine the state to use from the properties and set the state.
+        // Do not render content yet; widget will render again.
+        if (this.state.boxStatus === "initial") {
+            if (collapsible === "yesStartCollapsed") {
+                console.info("CustomGroupBox.render: set state collapsed only");
+                this.setState({ boxStatus: "collapsed" });
+            } else {
+                console.info("CustomGroupBox.render: set state expanded only");
+                this.setState({ boxStatus: "expanded" });
+            }
+            return null;
+        }
+
+        console.info("CustomGroupBox.render: render content");
+
+        let className = "mx-groupbox " + this.props.class;
+        if (collapsible !== "no") {
+            className += " mx-groupbox-collapsible";
+        }
+        className += " " + this.state.boxStatus;
         return (
             <div className={className}>
                 <div className="mx-groupbox-header">{this.getContent(headerContent, headerPreviewContent)}</div>
-                <div className="mx-groupbox-body">{this.getContent(bodyContent, bodyPreviewContent)}</div>
+                <div className="mx-groupbox-body">
+                    {this.state.boxStatus ? this.getContent(bodyContent, bodyPreviewContent) : null}
+                </div>
             </div>
         );
-    }
-
-    getCollapsibleClassName(): string {
-        const { collapsible } = this.props;
-        // Simple now, separate function for easy maintenance
-        return collapsible !== "no" ? "mx-groupbox-collapsible " : "";
     }
 
     getContent(content?: ReactNode, contentPreview?: { widgetCount: number; renderer: ComponentType }): ReactNode {
