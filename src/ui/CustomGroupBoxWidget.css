@@ -4,3 +4,12 @@ Place your custom CSS here
 .customGroupBoxPreview {
     
 }
+
+.customGroupBoxHeaderContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.customGroupBoxHeaderContent {
+    flex-grow: 1;
+}
