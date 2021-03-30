@@ -10,14 +10,51 @@
     </icon>
     <properties>
         <propertyGroup caption="General">
+        <propertyGroup caption="Header configuration">
             <property key="headerContent" type="widgets">
                 <caption>Header content</caption>
                 <description></description>
             </property>
+            <property key="headerWidgets" type="widgets" required="false" dataSource="headerDataSource">
+                <caption>Content</caption>
+                <description>Widgets using data source</description>
+            </property>
+            <property key="headerDataSource" type="datasource" isList="true" required="false">
+                <caption>Header list content</caption>
+                <description />
+            </property>
+            <property key="headerListPosition" type="enumeration" defaultValue="before">
+                <caption>List position</caption>
+                <description>This setting decides whether the list content should be rendered before or after the static components</description>
+                <enumerationValues>
+                    <enumerationValue key="before">Before</enumerationValue>
+                    <enumerationValue key="after">After</enumerationValue>
+                </enumerationValues>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Body configuration">
             <property key="bodyContent" type="widgets">
                 <caption>Body content</caption>
                 <description></description>
             </property>
+            <property key="bodyWidgets" type="widgets" required="false" dataSource="bodyDataSource">
+                <caption>Body list content</caption>
+                <description>Widgets using data source</description>
+            </property>
+            <property key="bodyDataSource" type="datasource" isList="true" required="false">
+                <caption>Data source</caption>
+                <description />
+            </property>
+            <property key="bodyListPosition" type="enumeration" defaultValue="before">
+                <caption>List position</caption>
+                <description>This setting decides whether the list content should be rendered before or after the static components</description>
+                <enumerationValues>
+                    <enumerationValue key="before">Before</enumerationValue>
+                    <enumerationValue key="after">After</enumerationValue>
+                </enumerationValues>
+            </property>
+            </propertyGroup>
+        <propertyGroup caption="Other settings">
             <property key="collapsible" type="enumeration" defaultValue="yesStartExpanded">
                 <caption>Collapsible</caption>
                 <description></description>
@@ -27,6 +64,7 @@
                     <enumerationValue key="yesStartCollapsed">Yes (start collapsed)</enumerationValue>
                 </enumerationValues>
             </property>
+        </propertyGroup>
         </propertyGroup>
     </properties>
 </widget>

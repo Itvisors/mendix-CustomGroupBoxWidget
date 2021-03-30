@@ -12,7 +12,13 @@ export default class CustomGroupBoxWidget extends Component<CustomGroupBoxWidget
                 isPreview={false}
                 class={this.props.class}
                 headerContent={this.props.headerContent}
+                headerDataSource={this.props.headerDataSource}
+                headerWidgets={this.props.headerWidgets}
+                headerListPosition={this.props.headerListPosition}
                 bodyContent={this.props.bodyContent}
+                bodyDataSource={this.props.bodyDataSource}
+                bodyWidgets={this.props.bodyWidgets}
+                bodyListPosition={this.props.bodyListPosition}
                 collapsible={this.props.collapsible}
             />
         );
