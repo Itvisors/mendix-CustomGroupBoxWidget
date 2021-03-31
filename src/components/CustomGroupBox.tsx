@@ -1,11 +1,18 @@
 import { Component, ComponentType, ReactNode, createElement } from "react";
-import { CollapsibleEnum } from "../../typings/CustomGroupBoxWidgetProps";
+import { ListValue, ObjectItem } from "mendix";
+import { CollapsibleEnum, BodyListPositionEnum, HeaderListPositionEnum } from "../../typings/CustomGroupBoxWidgetProps";
 
 export interface CustomGroupBoxProps {
     isPreview: boolean;
     class: string;
     headerContent?: ReactNode;
+    headerDataSource?: ListValue;
+    headerWidgets?: (i?: ObjectItem) => ReactNode;
+    headerListPosition?: HeaderListPositionEnum;
     bodyContent?: ReactNode;
+    bodyDataSource?: ListValue;
+    bodyWidgets?: (i?: ObjectItem) => ReactNode;
+    bodyListPosition?: BodyListPositionEnum;
     headerPreviewContent?: { widgetCount: number; renderer: ComponentType };
     bodyPreviewContent?: { widgetCount: number; renderer: ComponentType };
     collapsible: CollapsibleEnum;
@@ -53,13 +60,37 @@ export class CustomGroupBox extends Component<CustomGroupBoxProps, State> {
                 <div className="mx-groupbox-header" onClick={() => this.handleClick()}>
                     <div className="customGroupBoxHeaderContainer">
                         <div className="customGroupBoxHeaderContent">
+                            {this.getContentFromList(
+                                this.props.headerListPosition!,
+                                "before",
+                                this.props.headerDataSource!,
+                                this.props.headerWidgets!
+                            )}
                             {this.getContent(headerContent, headerPreviewContent)}
+                            {this.getContentFromList(
+                                this.props.headerListPosition!,
+                                "after",
+                                this.props.headerDataSource!,
+                                this.props.headerWidgets!
+                            )}
                         </div>
                         {this.getIcon()}
                     </div>
                 </div>
                 <div className="mx-groupbox-body">
+                    {this.getContentFromList(
+                        this.props.bodyListPosition!,
+                        "before",
+                        this.props.bodyDataSource!,
+                        this.props.bodyWidgets!
+                    )}
                     {this.state.boxStatus ? this.getContent(bodyContent, bodyPreviewContent) : null}
+                    {this.getContentFromList(
+                        this.props.bodyListPosition!,
+                        "after",
+                        this.props.bodyDataSource!,
+                        this.props.bodyWidgets!
+                    )}
                 </div>
             </div>
         );
@@ -99,5 +130,13 @@ export class CustomGroupBox extends Component<CustomGroupBoxProps, State> {
         } else {
             return content;
         }
+    }
+    getContentFromList(
+        listPosition: string,
+        calledFrom: string,
+        dataSource: ListValue,
+        widgets: (i?: ObjectItem) => ReactNode
+    ) {
+        if (listPosition === calledFrom) return dataSource?.items?.map(i => widgets(i));
     }
 }
