@@ -1,7 +1,7 @@
 {
   "name": "customgroupboxwidget",
   "widgetName": "CustomGroupBoxWidget",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Custom group box widget for web",
   "copyright": "ITvisors 2021",
   "author": "Marcel Groeneweg",
