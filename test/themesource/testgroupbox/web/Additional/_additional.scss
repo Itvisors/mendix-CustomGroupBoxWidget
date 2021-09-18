@@ -1,0 +1,17 @@
+
+.groupBoxHeaderButton {
+    padding: 0.2em;
+    border: none;
+    background-color: transparent;
+    color: white;
+    &:hover,
+    &:focus,
+    &:active,
+    &:active:focus {
+        color: white;
+        border: none;
+        background-color: transparent;
+        outline: none;
+        box-shadow: none;
+    }
+}
