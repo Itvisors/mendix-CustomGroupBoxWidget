@@ -7,6 +7,9 @@ In addition to default groupbox, place content in the header.
 ## Usage
 No specific installation. Just put your content in the header and body sections.
 
+## Header mode
+The default styling of the widget matches the header mode `Div` of the default groupbox widget. For using header (enlarged text) styles, make sure to style your header content similar to the default groupbox if you want to match the styling.
+
 ## Styling
 The widget can work with the same classes Mendix provides for the default group box widget. To make this easier you can adjust the settings.json file to add design properties for the widget. The test project in the GitHub repository has an [example](https://github.com/Itvisors/mendix-CustomGroupBoxWidget/blob/main/test/theme/settings.json)
 

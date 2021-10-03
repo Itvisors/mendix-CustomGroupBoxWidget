@@ -20,7 +20,7 @@ export interface CustomGroupBoxWidgetContainerProps {
 export interface CustomGroupBoxWidgetPreviewProps {
     class: string;
     style: string;
-    headerContent: { widgetCount: number; renderer: ComponentType };
-    bodyContent: { widgetCount: number; renderer: ComponentType };
+    headerContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
+    bodyContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
     collapsible: CollapsibleEnum;
 }

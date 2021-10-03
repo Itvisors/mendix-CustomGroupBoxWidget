@@ -5,9 +5,7 @@
         xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Custom Group Box Widget</name>
     <description>Custom group box widget for web</description>
-    <icon>
-        iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAMUExURQAAAC8hTQCq4gAAAD5AAhEAAAAEdFJOU////wBAKqn0AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAVElEQVRIS+3QMQ7AIAwEQcj9/8+IiILQrdPkopvOlrdx0wtNvcw7Xg8AfhBfDzrmuTngeF7evOLdHmP+cY13vL4AJIYSQ4mhxFBiKDH0ibjGNy6TBlNUIRXJReauAAAAAElFTkSuQmCC
-    </icon>
+    <studioProCategory>Structure</studioProCategory>
     <properties>
         <propertyGroup caption="General">
             <property key="headerContent" type="widgets">
