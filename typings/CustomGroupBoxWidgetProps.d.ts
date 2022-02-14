@@ -18,8 +18,10 @@ export interface CustomGroupBoxWidgetContainerProps {
 }
 
 export interface CustomGroupBoxWidgetPreviewProps {
-    class: string;
+    className: string;
     style: string;
+    styleObject?: CSSProperties;
+    readOnly: boolean;
     headerContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
     bodyContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
     collapsible: CollapsibleEnum;

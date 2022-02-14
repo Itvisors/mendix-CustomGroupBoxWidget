@@ -9,7 +9,7 @@ export class preview extends Component<CustomGroupBoxWidgetPreviewProps> {
         return (
             <CustomGroupBox
                 isPreview
-                class={this.props.class}
+                class={this.props.className}
                 headerPreviewContent={this.props.headerContent}
                 bodyPreviewContent={this.props.bodyContent}
                 collapsible={this.props.collapsible}
