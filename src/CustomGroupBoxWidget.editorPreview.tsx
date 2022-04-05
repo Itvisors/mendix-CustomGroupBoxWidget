@@ -1,21 +1,38 @@
-import { Component, ReactNode, createElement } from "react";
+import { ReactElement, createElement, ComponentType } from "react";
+
+import { CustomGroupBox, CustomGroupBoxProps } from "./components/CustomGroupBox";
 import { CustomGroupBoxWidgetPreviewProps } from "../typings/CustomGroupBoxWidgetProps";
-import { CustomGroupBox } from "./components/CustomGroupBox";
 
-declare function require(name: string): string;
-
-export class preview extends Component<CustomGroupBoxWidgetPreviewProps> {
-    render(): ReactNode {
-        return (
-            <CustomGroupBox
-                isPreview
-                class={this.props.className}
-                headerPreviewContent={this.props.headerContent}
-                bodyPreviewContent={this.props.bodyContent}
-                collapsible={this.props.collapsible}
-            />
-        );
+function transformPreviewWidgetContent(contentPreview: {
+    widgetCount: number;
+    renderer: ComponentType<{ caption?: string }>;
+}): ReactElement | null {
+    if (!contentPreview) {
+        return null;
     }
+    const ContentRenderer = contentPreview.renderer;
+    return (
+        <ContentRenderer>
+            <div className="customGroupBoxPreview" />
+        </ContentRenderer>
+    );
+}
+
+function transformProps(props: CustomGroupBoxWidgetPreviewProps): CustomGroupBoxProps {
+    return {
+        className: props.className,
+        headerContent: transformPreviewWidgetContent(props.headerContent),
+        bodyContent: transformPreviewWidgetContent(props.bodyContent),
+        collapsible: props.collapsible
+    };
+}
+
+export function preview(props: CustomGroupBoxWidgetPreviewProps): ReactElement {
+    return (
+        <div>
+            <CustomGroupBox {...transformProps(props)}></CustomGroupBox>
+        </div>
+    );
 }
 
 export function getPreviewCss(): string {

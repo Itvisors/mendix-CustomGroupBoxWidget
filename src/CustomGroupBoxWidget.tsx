@@ -1,20 +1,16 @@
-import { Component, ReactNode, createElement } from "react";
+import { ReactElement, createElement } from "react";
 
 import { CustomGroupBoxWidgetContainerProps } from "../typings/CustomGroupBoxWidgetProps";
 import { CustomGroupBox } from "./components/CustomGroupBox";
-
 import "./ui/CustomGroupBoxWidget.css";
 
-export default class CustomGroupBoxWidget extends Component<CustomGroupBoxWidgetContainerProps> {
-    render(): ReactNode {
-        return (
-            <CustomGroupBox
-                isPreview={false}
-                class={this.props.class}
-                headerContent={this.props.headerContent}
-                bodyContent={this.props.bodyContent}
-                collapsible={this.props.collapsible}
-            />
-        );
-    }
+export function CustomGroupBoxWidget(props: CustomGroupBoxWidgetContainerProps): ReactElement {
+    return (
+        <CustomGroupBox
+            className={props.class}
+            headerContent={props.headerContent}
+            bodyContent={props.bodyContent}
+            collapsible={props.collapsible}
+        />
+    );
 }

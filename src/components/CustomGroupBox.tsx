@@ -1,103 +1,60 @@
-import { Component, ComponentType, ReactNode, createElement } from "react";
-import { CollapsibleEnum } from "../../typings/CustomGroupBoxWidgetProps";
+import { ReactElement, ReactNode, createElement, useCallback, useState } from "react";
+import { CollapsibleEnum } from "typings/CustomGroupBoxWidgetProps";
 
 export interface CustomGroupBoxProps {
-    isPreview: boolean;
-    class: string;
+    className?: string;
     headerContent?: ReactNode;
     bodyContent?: ReactNode;
-    headerPreviewContent?: { widgetCount: number; renderer: ComponentType };
-    bodyPreviewContent?: { widgetCount: number; renderer: ComponentType };
     collapsible: CollapsibleEnum;
 }
 
-interface State {
-    boxStatus: "initial" | "expanded" | "collapsed";
-}
+type boxStatusType = "expanded" | "collapsed";
 
-export class CustomGroupBox extends Component<CustomGroupBoxProps, State> {
-    constructor(props: CustomGroupBoxProps) {
-        super(props);
+export function CustomGroupBox(props: CustomGroupBoxProps): ReactElement {
+    const { collapsible } = props;
 
-        this.state = {
-            boxStatus: "initial"
-        };
-    }
+    const [boxStatus, setBoxStatus] = useState<boxStatusType>(() => {
+        return collapsible === "yesStartCollapsed" ? "collapsed" : "expanded";
+    });
 
-    render(): ReactNode {
-        const { collapsible } = this.props;
-        // When the widget is first rendered, state will be at initial value.
-        // Determine the state to use from the properties and set the state.
-        // Do not render content yet; widget will render again.
-        if (this.state.boxStatus === "initial") {
-            if (collapsible === "yesStartCollapsed") {
-                // console.info("CustomGroupBox.render: set state collapsed only");
-                this.setState({ boxStatus: "collapsed" });
-            } else {
-                // console.info("CustomGroupBox.render: set state expanded only");
-                this.setState({ boxStatus: "expanded" });
-            }
+    const getIcon = (): ReactNode => {
+        if (props.collapsible === "no") {
             return null;
         }
 
-        // console.info("CustomGroupBox.render: render content");
-
-        let containerClassName = "mx-groupbox " + this.props.class;
-        if (collapsible !== "no") {
-            containerClassName += " mx-groupbox-collapsible";
-        }
-        containerClassName += " " + this.state.boxStatus;
-        const { headerContent, headerPreviewContent, bodyContent, bodyPreviewContent } = this.props;
-        return (
-            <div className={containerClassName}>
-                <div className="mx-groupbox-header" onClick={() => this.handleClick()}>
-                    <div className="customGroupBoxHeaderContainer">
-                        <div className="customGroupBoxHeaderContent">
-                            {this.getContent(headerContent, headerPreviewContent)}
-                        </div>
-                        {this.getIcon()}
-                    </div>
-                </div>
-                <div className="mx-groupbox-body">
-                    {this.state.boxStatus ? this.getContent(bodyContent, bodyPreviewContent) : null}
-                </div>
-            </div>
-        );
-    }
-
-    handleClick(): void {
-        if (this.props.collapsible === "no") {
-            return;
-        }
-
-        this.setState((currentState: State) => {
-            return { boxStatus: currentState.boxStatus === "expanded" ? "collapsed" : "expanded" };
-        });
-    }
-
-    getIcon(): ReactNode {
-        if (this.props.collapsible === "no") {
-            return null;
-        }
-
-        const iconName = this.state.boxStatus === "expanded" ? "minus" : "plus";
+        const iconName = boxStatus === "expanded" ? "minus" : "plus";
         const iconClassName = "glyphicon mx-groupbox-collapse-icon glyphicon-" + iconName;
         return <i className={iconClassName} />;
-    }
+    };
 
-    getContent(content?: ReactNode, contentPreview?: { widgetCount: number; renderer: ComponentType }): ReactNode {
-        if (this.props.isPreview) {
-            if (!contentPreview) {
-                return null;
-            }
-            const ContentRenderer = contentPreview.renderer;
-            return (
-                <ContentRenderer>
-                    <div className="customGroupBoxPreview" />
-                </ContentRenderer>
-            );
-        } else {
-            return content;
+    const onClickHandler = useCallback(() => {
+        if (collapsible === "no") {
+            return;
         }
+        setBoxStatus(currentStatus => {
+            if (currentStatus === "collapsed") {
+                return "expanded";
+            } else {
+                return "collapsed";
+            }
+        });
+    }, [collapsible]);
+
+    let containerClassName = "mx-groupbox " + props.className;
+    if (collapsible !== "no") {
+        containerClassName += " mx-groupbox-collapsible";
     }
+    containerClassName += " " + boxStatus;
+    const { headerContent, bodyContent } = props;
+    return (
+        <div className={containerClassName}>
+            <div className="mx-groupbox-header" onClick={onClickHandler}>
+                <div className="customGroupBoxHeaderContainer">
+                    <div className="customGroupBoxHeaderContent">{headerContent}</div>
+                    {getIcon()}
+                </div>
+            </div>
+            <div className="mx-groupbox-body">{boxStatus === "expanded" ? bodyContent : null}</div>
+        </div>
+    );
 }
