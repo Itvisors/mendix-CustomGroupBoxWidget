@@ -1,12 +1,12 @@
 {
   "name": "customgroupboxwidget",
   "widgetName": "CustomGroupBoxWidget",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Custom group box widget for web",
   "copyright": "ITvisors 2021",
   "author": "Marcel Groeneweg",
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   },
   "license": "Apache-2.0",
   "config": {
@@ -25,7 +25,7 @@
     "release": "pluggable-widgets-tools release:web"
   },
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "^9.10.0",
+    "@mendix/pluggable-widgets-tools": "^9.0.0",
     "@types/big.js": "^6.0.2",
     "@types/react": "~17.0.1",
     "@types/react-dom": "~17.0.1"
