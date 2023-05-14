@@ -1,29 +1,22 @@
-import { ReactElement, createElement, ComponentType } from "react";
+import { ReactElement, createElement } from "react";
 
 import { CustomGroupBox, CustomGroupBoxProps } from "./components/CustomGroupBox";
 import { CustomGroupBoxWidgetPreviewProps } from "../typings/CustomGroupBoxWidgetProps";
 
-function transformPreviewWidgetContent(contentPreview: {
-    widgetCount: number;
-    renderer: ComponentType<{ caption?: string }>;
-}): ReactElement | null {
-    if (!contentPreview) {
-        return null;
-    }
-    const ContentRenderer = contentPreview.renderer;
-    return (
-        <ContentRenderer>
-            <div className="customGroupBoxPreview" />
-        </ContentRenderer>
-    );
-}
-
 function transformProps(props: CustomGroupBoxWidgetPreviewProps): CustomGroupBoxProps {
     return {
         className: props.className,
-        headerContent: transformPreviewWidgetContent(props.headerContent),
-        bodyContent: transformPreviewWidgetContent(props.bodyContent),
-        collapsible: props.collapsible
+        headerContent: (
+            <props.headerContent.renderer caption="Place header content here">
+                <div />
+            </props.headerContent.renderer>
+        ),
+        bodyContent: (
+            <props.bodyContent.renderer caption="Place body content here">
+                <div />
+            </props.bodyContent.renderer>
+        ),
+        collapsible: "yesStartExpanded"
     };
 }
 

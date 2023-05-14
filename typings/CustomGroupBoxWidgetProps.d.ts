@@ -1,7 +1,7 @@
 /**
  * This file was generated from CustomGroupBoxWidget.xml
  * WARNING: All changes made to this file will be overwritten
- * @author Mendix UI Content Team
+ * @author Mendix Widgets Framework Team
  */
 import { ComponentType, CSSProperties, ReactNode } from "react";
 
@@ -18,11 +18,15 @@ export interface CustomGroupBoxWidgetContainerProps {
 }
 
 export interface CustomGroupBoxWidgetPreviewProps {
+    /**
+     * @deprecated Deprecated since version 9.18.0. Please use class property instead.
+     */
     className: string;
+    class: string;
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
-    headerContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
-    bodyContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
+    headerContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
+    bodyContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
     collapsible: CollapsibleEnum;
 }
