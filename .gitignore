@@ -12,3 +12,4 @@ node_modules/
 *.bak
 .idea/
 *DS_Store*
+/test/.mendix-cache
