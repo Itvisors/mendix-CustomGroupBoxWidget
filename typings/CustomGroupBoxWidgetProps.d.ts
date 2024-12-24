@@ -26,6 +26,8 @@ export interface CustomGroupBoxWidgetPreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
+    renderMode: "design" | "xray" | "structure";
+    translate: (text: string) => string;
     headerContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
     bodyContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
     collapsible: CollapsibleEnum;
