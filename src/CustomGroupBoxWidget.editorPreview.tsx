@@ -4,6 +4,7 @@ import { CustomGroupBox, CustomGroupBoxProps } from "./components/CustomGroupBox
 import { CustomGroupBoxWidgetPreviewProps } from "../typings/CustomGroupBoxWidgetProps";
 
 function transformProps(props: CustomGroupBoxWidgetPreviewProps): CustomGroupBoxProps {
+    // Do not return the state attribute here as it is not used in the preview
     return {
         className: props.className,
         headerContent: (

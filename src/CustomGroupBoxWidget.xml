@@ -25,6 +25,13 @@
                     <enumerationValue key="yesStartCollapsed">Yes (start collapsed)</enumerationValue>
                 </enumerationValues>
             </property>
+            <property key="expandedAttr" type="attribute" required="false">
+                <caption>Expanded attribute</caption>
+                <description>Optional. Use this attribute to get and store the current expanded state. Ignored when Collapsible is set to No</description>
+                <attributeTypes>
+                    <attributeType name="Boolean" />
+                </attributeTypes>
+            </property>
         </propertyGroup>
     </properties>
 </widget>

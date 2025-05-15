@@ -2,10 +2,15 @@
 Custom group box widget for web
 
 ## Features
-In addition to default groupbox, place content in the header.
+- In addition to default groupbox, place content in the header.
+- Optionally use a context attribute to control the expanded/collapsed state
 
-## Usage
+## Usage without context attribute
 No specific installation. Just put your content in the header and body sections.
+
+## Usage with context attribute
+The context attribute will be ignored if `Collapsible` is set to `No`.
+If the context attribute is set, the attribute value will be used to set the initial expanded/collapsed state.
 
 ## Header mode
 The default styling of the widget matches the header mode `Div` of the default groupbox widget. For using header (enlarged text) styles, make sure to style your header content similar to the default groupbox if you want to match the styling.

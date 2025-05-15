@@ -4,6 +4,7 @@
  * @author Mendix Widgets Framework Team
  */
 import { ComponentType, CSSProperties, ReactNode } from "react";
+import { EditableValue } from "mendix";
 
 export type CollapsibleEnum = "no" | "yesStartExpanded" | "yesStartCollapsed";
 
@@ -15,6 +16,7 @@ export interface CustomGroupBoxWidgetContainerProps {
     headerContent: ReactNode;
     bodyContent: ReactNode;
     collapsible: CollapsibleEnum;
+    expandedAttr?: EditableValue<boolean>;
 }
 
 export interface CustomGroupBoxWidgetPreviewProps {
@@ -31,4 +33,5 @@ export interface CustomGroupBoxWidgetPreviewProps {
     headerContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
     bodyContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
     collapsible: CollapsibleEnum;
+    expandedAttr: string;
 }

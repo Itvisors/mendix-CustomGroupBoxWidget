@@ -11,6 +11,7 @@ export function CustomGroupBoxWidget(props: CustomGroupBoxWidgetContainerProps):
             headerContent={props.headerContent}
             bodyContent={props.bodyContent}
             collapsible={props.collapsible}
+            expandedAttr={props.expandedAttr}
         />
     );
 }

@@ -1,21 +1,48 @@
-import { ReactElement, ReactNode, createElement, useCallback, useMemo, useState } from "react";
+import { ReactElement, ReactNode, createElement, useCallback, useEffect, useMemo, useState } from "react";
 import { CollapsibleEnum } from "typings/CustomGroupBoxWidgetProps";
+import { EditableValue } from "mendix";
 
 export interface CustomGroupBoxProps {
     className?: string;
     headerContent?: ReactNode;
     bodyContent?: ReactNode;
     collapsible: CollapsibleEnum;
+    expandedAttr?: EditableValue<boolean>;
 }
 
 type boxStatusType = "expanded" | "collapsed" | "notRendered";
 
 export function CustomGroupBox(props: CustomGroupBoxProps): ReactElement {
-    const { collapsible } = props;
+    const { collapsible, expandedAttr } = props;
 
     const [boxStatus, setBoxStatus] = useState<boxStatusType>(() => {
-        return collapsible === "yesStartCollapsed" ? "notRendered" : "expanded";
+        if (collapsible !== "no" && expandedAttr) {
+            return "notRendered";
+        } else {
+            return collapsible === "yesStartCollapsed" ? "notRendered" : "expanded";
+        }
     });
+
+    useEffect(() => {
+        if (collapsible === "no") {
+            return;
+        }
+        // If the expanded attribute property is configured, use the value
+        // Otherwise use the collapsible property
+        if (expandedAttr) {
+            if (expandedAttr.value) {
+                setBoxStatus("expanded");
+            } else {
+                setBoxStatus(prevStatus => {
+                    if (prevStatus === "notRendered") {
+                        return "notRendered";
+                    } else {
+                        return "collapsed";
+                    }
+                });
+            }
+        }
+    }, [collapsible, expandedAttr]);
 
     const getIcon = useMemo((): ReactNode => {
         if (props.collapsible === "no") {
@@ -38,7 +65,10 @@ export function CustomGroupBox(props: CustomGroupBoxProps): ReactElement {
                 return "expanded";
             }
         });
-    }, [collapsible]);
+        if (expandedAttr) {
+            expandedAttr.setValue(!expandedAttr.value);
+        }
+    }, [collapsible, expandedAttr]);
 
     let containerClassName = "mx-groupbox " + props.className;
     if (collapsible !== "no") {
