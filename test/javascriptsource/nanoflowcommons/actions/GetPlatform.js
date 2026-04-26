@@ -12,18 +12,10 @@ import { Big } from "big.js";
 
 /**
  * Get the client platform (NanoflowCommons.Platform) where the action is running.
- * @returns {Promise.<"NanoflowCommons.Platform.Web"|"NanoflowCommons.Platform.Native_mobile"|"NanoflowCommons.Platform.Hybrid_mobile">}
+ * @returns {Promise.<undefined|"Web"|"Native_mobile"|"Hybrid_mobile">}
  */
 export async function GetPlatform() {
 	// BEGIN USER CODE
-    if (window && window.cordova) {
-        return Promise.resolve("Hybrid_mobile");
-    }
-    else if (navigator && navigator.product === "ReactNative") {
-        return Promise.resolve("Native_mobile");
-    }
-    else {
-        return Promise.resolve("Web");
-    }
+	throw new Error("JavaScript action was not implemented");
 	// END USER CODE
 }

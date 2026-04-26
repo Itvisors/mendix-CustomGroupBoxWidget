@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode, createElement, useCallback, useEffect, useMemo, useState } from "react";
+import { ReactElement, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { CollapsibleEnum } from "typings/CustomGroupBoxWidgetProps";
 import { EditableValue } from "mendix";
 

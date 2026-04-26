@@ -15,13 +15,6 @@ import { Big } from "big.js";
  */
 export async function IsConnectedToServer() {
 	// BEGIN USER CODE
-    try {
-        const response = await fetch(mx.remoteUrl);
-        return response.ok;
-    }
-    catch (err) {
-        console.error(err);
-        return false;
-    }
+	throw new Error("JavaScript action was not implemented");
 	// END USER CODE
 }

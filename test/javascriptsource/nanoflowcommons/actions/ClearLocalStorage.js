@@ -15,13 +15,6 @@ import { Big } from "big.js";
  */
 export async function ClearLocalStorage() {
 	// BEGIN USER CODE
-    try {
-        localStorage.clear();
-        return true;
-    }
-    catch (e) {
-        console.error(e);
-        return false;
-    }
+	throw new Error("JavaScript action was not implemented");
 	// END USER CODE
 }

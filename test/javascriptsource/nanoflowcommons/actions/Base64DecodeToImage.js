@@ -6,7 +6,6 @@
 // - the code between BEGIN EXTRA CODE and END EXTRA CODE
 // Other code you write will be lost the next time you deploy the project.
 import { Big } from "big.js";
-import { Base64 } from 'js-base64';
 
 // BEGIN EXTRA CODE
 // END EXTRA CODE
@@ -18,15 +17,6 @@ import { Base64 } from 'js-base64';
  */
 export async function Base64DecodeToImage(base64, image) {
 	// BEGIN USER CODE
-    if (!base64) {
-        throw new Error("base64 String should not be empty");
-    }
-    if (!image) {
-        throw new Error("image should not be null");
-    }
-    const blob = new Blob([Base64.toUint8Array(base64)], { type: "image/png" });
-    return new Promise((resolve, reject) => {
-        mx.data.saveDocument(image.getGuid(), "camera image", {}, blob, () => resolve(true), reject);
-    });
+	throw new Error("JavaScript action was not implemented");
 	// END USER CODE
 }

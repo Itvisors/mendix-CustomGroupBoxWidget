@@ -25,18 +25,6 @@ import { Big } from "big.js";
  */
 export async function SignIn(username, password, useAuthToken) {
 	// BEGIN USER CODE
-    if (!username || !password) {
-        return Promise.resolve(new Big(401));
-    }
-    return new Promise(resolve => {
-        const onSuccess = () => resolve(new Big(200));
-        const onError = (error) => resolve(new Big(error.status));
-        if (typeof useAuthToken === "undefined") {
-            mx.login(username, password, onSuccess, onError);
-        }
-        else {
-            mx.login2(username, password, useAuthToken, onSuccess, onError);
-        }
-    });
+	throw new Error("JavaScript action was not implemented");
 	// END USER CODE
 }

@@ -1,4 +1,4 @@
-import { ReactElement, createElement } from "react";
+import { ReactElement } from "react";
 
 import { CustomGroupBox, CustomGroupBoxProps } from "./components/CustomGroupBox";
 import { CustomGroupBoxWidgetPreviewProps } from "../typings/CustomGroupBoxWidgetProps";
