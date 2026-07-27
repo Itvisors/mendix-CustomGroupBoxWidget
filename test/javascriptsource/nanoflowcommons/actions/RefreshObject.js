@@ -17,6 +17,14 @@ import { Big } from "big.js";
  */
 export async function RefreshObject(objectToRefresh) {
 	// BEGIN USER CODE
-	throw new Error("JavaScript action was not implemented");
+    if (!objectToRefresh) {
+        return Promise.reject(new Error("ObjectToRefresh parameter is required"));
+    }
+    return new Promise(resolve => {
+        mx.data.update({
+            guid: objectToRefresh.getGuid(),
+            callback: () => resolve(true)
+        });
+    });
 	// END USER CODE
 }

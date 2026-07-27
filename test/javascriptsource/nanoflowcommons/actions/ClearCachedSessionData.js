@@ -16,6 +16,9 @@ import { Big } from "big.js";
  */
 export async function ClearCachedSessionData() {
 	// BEGIN USER CODE
-	throw new Error("JavaScript action was not implemented");
+    if (mx.session && mx.session.clearCachedSessionData === undefined) {
+        return Promise.reject(new Error("JS action 'Clear cached session data' is not supported prior to Mendix client v9.14"));
+    }
+    await mx.session.clearCachedSessionData();
 	// END USER CODE
 }

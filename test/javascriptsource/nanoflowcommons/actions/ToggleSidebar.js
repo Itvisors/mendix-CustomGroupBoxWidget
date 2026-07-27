@@ -15,6 +15,11 @@ import { Big } from "big.js";
  */
 export async function ToggleSidebar() {
 	// BEGIN USER CODE
-	throw new Error("JavaScript action was not implemented");
+    mx.ui.toggleSidebar();
+    // Web platform
+    if (window && !(navigator && navigator.product === "ReactNative")) {
+        document.dispatchEvent(new CustomEvent("toggleSidebar"));
+    }
+    return Promise.resolve();
 	// END USER CODE
 }

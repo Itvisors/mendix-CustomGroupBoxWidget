@@ -18,6 +18,24 @@ import { Big } from "big.js";
  */
 export async function GetObjectByGuid(entity, objectGuid) {
 	// BEGIN USER CODE
-	throw new Error("JavaScript action was not implemented");
+    if (!entity) {
+        return Promise.reject(new Error("Input parameter 'Entity' is required."));
+    }
+    if (!objectGuid) {
+        return Promise.reject(new Error("Input parameter 'Object guid' is required."));
+    }
+    return new Promise((resolve, reject) => {
+        mx.data.get({
+            guid: objectGuid,
+            callback: object => {
+                if (object) {
+                    resolve(object);
+                }
+                else {
+                    reject(new Error("'Object guid' not found"));
+                }
+            }
+        });
+    });
 	// END USER CODE
 }

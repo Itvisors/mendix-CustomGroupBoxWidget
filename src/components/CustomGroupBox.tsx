@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import { ReactElement, ReactNode, useCallback, useMemo, useState } from "react";
 import { CollapsibleEnum } from "typings/CustomGroupBoxWidgetProps";
 import { EditableValue } from "mendix";
 
@@ -17,32 +17,31 @@ export function CustomGroupBox(props: CustomGroupBoxProps): ReactElement {
 
     const [boxStatus, setBoxStatus] = useState<boxStatusType>(() => {
         if (collapsible !== "no" && expandedAttr) {
+            // If expandedAttr is set, use its value
+            if (expandedAttr.value === true) {
+                return "expanded";
+            }
             return "notRendered";
         } else {
             return collapsible === "yesStartCollapsed" ? "notRendered" : "expanded";
         }
     });
 
-    useEffect(() => {
-        if (collapsible === "no") {
-            return;
-        }
-        // If the expanded attribute property is configured, use the value
-        // Otherwise use the collapsible property
-        if (expandedAttr) {
-            if (expandedAttr.value) {
+    // Track previous attribute value
+    const [prevExpandedValue, setPrevExpandedValue] = useState<boolean | undefined>(expandedAttr?.value);
+
+    // "Adjusting state during render" — official React-pattern
+    if (collapsible !== "no" && expandedAttr) {
+        const currentValue = expandedAttr.value;
+        if (currentValue !== prevExpandedValue) {
+            setPrevExpandedValue(currentValue);
+            if (currentValue) {
                 setBoxStatus("expanded");
-            } else {
-                setBoxStatus(prevStatus => {
-                    if (prevStatus === "notRendered") {
-                        return "notRendered";
-                    } else {
-                        return "collapsed";
-                    }
-                });
+            } else if (boxStatus !== "notRendered") {
+                setBoxStatus("collapsed");
             }
         }
-    }, [collapsible, expandedAttr]);
+    }
 
     const getIcon = useMemo((): ReactNode => {
         if (props.collapsible === "no") {

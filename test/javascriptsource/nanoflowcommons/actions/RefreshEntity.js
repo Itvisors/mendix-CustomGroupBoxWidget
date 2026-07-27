@@ -17,6 +17,14 @@ import { Big } from "big.js";
  */
 export async function RefreshEntity(entityToRefresh) {
 	// BEGIN USER CODE
-	throw new Error("JavaScript action was not implemented");
+    if (!entityToRefresh) {
+        return Promise.reject(new Error("EntityToRefresh parameter is required"));
+    }
+    return new Promise(resolve => {
+        mx.data.update({
+            entity: entityToRefresh,
+            callback: () => resolve(true)
+        });
+    });
 	// END USER CODE
 }

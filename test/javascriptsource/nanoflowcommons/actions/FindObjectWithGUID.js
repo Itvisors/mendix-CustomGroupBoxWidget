@@ -17,6 +17,6 @@ import { Big } from "big.js";
  */
 export async function FindObjectWithGUID(list, objectGUID) {
 	// BEGIN USER CODE
-	throw new Error("JavaScript action was not implemented");
+    return list.find(element => element.getGuid() === objectGUID);
 	// END USER CODE
 }

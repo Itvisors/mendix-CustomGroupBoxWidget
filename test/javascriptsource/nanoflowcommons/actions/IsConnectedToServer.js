@@ -15,6 +15,22 @@ import { Big } from "big.js";
  */
 export async function IsConnectedToServer() {
 	// BEGIN USER CODE
-	throw new Error("JavaScript action was not implemented");
+    try {
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        const body = JSON.stringify({ action: "info" });
+        const requestOptions = {
+            method: "POST",
+            headers,
+            body
+        };
+        // mx.remoteUrl always has / at the end, therefore we don't add it.
+        const response = await fetch(`${mx.remoteUrl}xas/`, requestOptions);
+        return response.ok;
+    }
+    catch (err) {
+        console.error(err);
+        return false;
+    }
 	// END USER CODE
 }

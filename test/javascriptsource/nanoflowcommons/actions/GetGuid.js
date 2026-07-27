@@ -17,6 +17,9 @@ import { Big } from "big.js";
  */
 export async function GetGuid(entityObject) {
 	// BEGIN USER CODE
-	throw new Error("JavaScript action was not implemented");
+    if (!entityObject) {
+        return Promise.reject(new Error("Input parameter 'Entity object' is required."));
+    }
+    return Promise.resolve(entityObject.getGuid());
 	// END USER CODE
 }
